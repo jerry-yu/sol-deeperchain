@@ -1,3 +1,4 @@
+use crate::state::CreditSettings;
 use {
     borsh::{BorshDeserialize, BorshSerialize},
     solana_program::{
@@ -8,13 +9,8 @@ use {
     },
 };
 
-// /// Instructions supported by the generic Name Registry program
-// #[derive(Clone, Debug, BorshSerialize, BorshDeserialize, PartialEq)]
-// pub enum CreditInstruction {
-//     Add {
-//         credit :u32,
-//     },
-//     Update {
-//         credit :u32,
-//     },
-// }
+#[derive(Clone, Debug, BorshSerialize, BorshDeserialize, PartialEq)]
+pub enum CreditInstruction {
+    Init { settings: CreditSettings },
+    Add { pk: Pubkey, credit: u32 },
+}

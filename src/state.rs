@@ -7,14 +7,16 @@ pub struct UserAccount {
     pub history: Vec<(i64, u8)>,
 }
 
-#[derive(BorshSerialize, BorshDeserialize, Debug, Default)]
+#[repr(C)]
+#[derive(BorshSerialize, BorshDeserialize, Debug, Default, Clone, PartialEq)]
 pub struct CreditSetting {
     pub campain_id: u16,
     pub level: u8,
     pub daily_reward: u64,
 }
 
-#[derive(BorshSerialize, BorshDeserialize, Debug, Default)]
+#[repr(C)]
+#[derive(BorshSerialize, BorshDeserialize, Debug, Default, Clone, PartialEq)]
 pub struct CreditSettings {
     pub settings: Vec<CreditSetting>,
 }

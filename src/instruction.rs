@@ -1,4 +1,4 @@
-use crate::state::CreditSettings;
+use crate::state::{CreditSettings, TokenAccount};
 use {
     borsh::{BorshDeserialize, BorshSerialize},
     solana_program::{
@@ -11,6 +11,19 @@ use {
 
 #[derive(Clone, Debug, BorshSerialize, BorshDeserialize, PartialEq)]
 pub enum CreditInstruction {
-    Init { settings: CreditSettings },
-    Add { pk: Pubkey, credit: u32 },
+    Init {
+        settings: CreditSettings,
+        token: TokenAccount,
+    },
+    Add {
+        pk: Pubkey,
+        campaign: u16,
+        credit: i32,
+        //maybe removed,now for test purpose
+        reward_since: u32,
+    },
+    SetTokenAddress {
+        address: Pubkey,
+    },
+    Claim,
 }
